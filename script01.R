@@ -81,3 +81,5 @@ ds_stocks <- as.data.frame(NFLX) %>%
   rownames_to_column(var = "date") %>% 
   select(date, price = NFLX.Close, volume = NFLX.Volume)
 
+## Exportar arquivo ##
+write.csv2(ds_stocks, "ds_stocks.csv", sep = ";")
