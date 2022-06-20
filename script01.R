@@ -65,3 +65,19 @@ ds_imdb_rating <- read_html(imdb_url) %>%
 ## Criando tabela Imdb ##
 ds_imdb <- as_tibble(cbind(rating = ds_imdb_rating,title = ds_imdb_title)) 
 
+## Exportar arquivo ##
+write.csv2(ds_imdb, "ds_imdb.csv", sep = ";")
+
+
+####################################
+## Yahoo Finance - Netflix Stocks ##
+####################################
+
+## Pegando o histórico de Stock ##
+getSymbols("NFLX", src = "yahoo")
+
+## Arrumando rownames e selecionando apenas as colunas desejadas (Date, Close e Volume) ##
+ds_stocks <- as.data.frame(NFLX) %>% 
+  rownames_to_column(var = "date") %>% 
+  select(date, price = NFLX.Close, volume = NFLX.Volume)
+
