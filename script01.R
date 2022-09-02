@@ -39,7 +39,7 @@ ds_oscars <- read_html(oscar_url) %>%
   html_table() %>% 
   select(title = Film, Awards)
 
-write.csv2(ds_oscars, "ds_oscars.csv", sep = ";")
+write.csv2(ds_oscars, "ds_oscars.csv", sep = ",", fileEncoding = "UTF-8")
 
 
 ####################
